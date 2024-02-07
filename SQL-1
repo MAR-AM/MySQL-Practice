@@ -1,0 +1,320 @@
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 49
+Server version: 5.7.44-log MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> create database DEV104;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use DEV104;
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> create table stagiaire(
+    -> code int,
+    -> nom_complet varchar(30)
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_dev104 |
++------------------+
+| stagiaire        |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> desc stagiaire;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| code        | int(11)     | YES  |     | NULL    |       |
+| nom_complet | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into stagiaire;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into stagiaire ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into stagiaire
+    -> value(1,'marieme');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stagiaire;
++------+-------------+
+| code | nom_complet |
++------+-------------+
+|    1 | marieme     |
++------+-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into stagiaire
+    -> value(2,'wissal');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from stagiaire;
++------+-------------+
+| code | nom_complet |
++------+-------------+
+|    1 | marieme     |
+|    2 | wissal      |
++------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> add column cin varchar(10)
+    -> after code;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| code        | int(11)     | YES  |     | NULL    |       |
+| cin         | varchar(10) | YES  |     | NULL    |       |
+| nom_complet | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table stagiare
+    -> add first_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> alter table stagiaire
+    -> drop cin;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| code        | int(11)     | YES  |     | NULL    |       |
+| nom_complet | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> rename nom_complet to name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to name' at line 2
+mysql> alter table stagiaire
+    -> rename column nom_complet to name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column nom_complet to name' at line 2
+mysql> alter table stagiaire
+    -> rename column nom_complet to name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column nom_complet to name' at line 2
+mysql> desc stagiaire;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| code        | int(11)     | YES  |     | NULL    |       |
+| nom_complet | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> rename column nom_complet to nom;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column nom_complet to nom' at line 2
+mysql> alter table stagiaire
+    -> rename column code to codey;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column code to codey' at line 2
+mysql> alter table stagiaire
+    -> rename column code to codey ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column code to codey' at line 2
+mysql> desc stagiaire;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| code        | int(11)     | YES  |     | NULL    |       |
+| nom_complet | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> drop nom_complet;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------+---------+------+-----+---------+-------+
+| Field | Type    | Null | Key | Default | Extra |
++-------+---------+------+-----+---------+-------+
+| code  | int(11) | YES  |     | NULL    |       |
++-------+---------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> add column name varchar(20);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| code  | int(11)     | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> rename column name to nom;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column name to nom' at line 2
+mysql> alter table stagiaire
+    -> change name nom varchar(20);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| code  | int(11)     | YES  |     | NULL    |       |
+| nom   | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stagiaire
+    -> modify column name varchar(15);
+ERROR 1054 (42S22): Unknown column 'name' in 'stagiaire'
+mysql> alter table stagiaire
+    -> modify column nom varchar(15);
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| code  | int(11)     | YES  |     | NULL    |       |
+| nom   | varchar(15) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> drop table stagiaire;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table stag(
+    -> code int,
+    -> id int,
+    -> nom varchar(10) not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> alter table stag
+    -> drop code;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
+ERROR 1146 (42S02): Table 'dev104.stagiaire' doesn't exist
+mysql> desc stag
+    -> ;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(11)     | YES  |     | NULL    |       |
+| nom   | varchar(10) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into stag
+    -> value(1,'marieme');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from stag;
++------+---------+
+| id   | nom     |
++------+---------+
+|    1 | marieme |
++------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into stag
+    -> value (null,'wissal');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from stag;
++------+---------+
+| id   | nom     |
++------+---------+
+|    1 | marieme |
+| NULL | wissal  |
++------+---------+
+2 rows in set (0.00 sec)
+
+mysql> update stag
+    -> set id = 1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 2  Changed: 1  Warnings: 0
+
+mysql> update stag
+    -> set id = 2
+    -> where nom = 'marieme';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from stag;
++------+---------+
+| id   | nom     |
++------+---------+
+|    2 | marieme |
+|    1 | wissal  |
++------+---------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stag
+    -> modify id varchar(10) not null;
+Query OK, 2 rows affected (0.04 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc stag;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | varchar(10) | NO   |     | NULL    |       |
+| nom   | varchar(10) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table stag
+    -> modify id varchar(10) unique;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
+ERROR 1146 (42S02): Table 'dev104.stagiaire' doesn't exist
+mysql> desc stag;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | varchar(10) | YES  | UNI | NULL    |       |
+| nom   | varchar(10) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql>
