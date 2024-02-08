@@ -1,0 +1,168 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| centre_formation   |
+| dev104             |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> drop database centre_formation;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create database centre_formation;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| centre_formation   |
+| dev104             |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use centre_formation;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table etudiant(
+    -> num_cine varchar(10),
+    -> nom varchar(45),
+    -> prenom varchar(45),
+    -> date_naissance date,
+    -> adress varchar(45),
+    -> villeEtu varchar(45),
+    -> niveauetu varchar(45)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc etudiant;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| num_cine       | varchar(10) | YES  |     | NULL    |       |
+| nom            | varchar(45) | YES  |     | NULL    |       |
+| prenom         | varchar(45) | YES  |     | NULL    |       |
+| date_naissance | date        | YES  |     | NULL    |       |
+| adress         | varchar(45) | YES  |     | NULL    |       |
+| villeEtu       | varchar(45) | YES  |     | NULL    |       |
+| niveauetu      | varchar(45) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> create table inscription(
+    -> codesess int,
+    -> num_cin varchar(10),
+    -> type_cours varchar(45)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc inscription;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| codesess   | int(11)     | YES  |     | NULL    |       |
+| num_cin    | varchar(10) | YES  |     | NULL    |       |
+| type_cours | varchar(45) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table session(
+    -> codesess int,
+    -> nomsess varchar(45),
+    -> date_debut date,
+    -> date_fin varchar(45)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc session;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| codesess   | int(11)     | YES  |     | NULL    |       |
+| nomsess    | varchar(45) | YES  |     | NULL    |       |
+| date_debut | date        | YES  |     | NULL    |       |
+| date_fin   | varchar(45) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table formation(
+    -> code_Form int,
+    -> titre_form varchar(45),
+    -> duree_Form double,
+    -> prix_form double,
+    -> session_codesess int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc formation;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| code_Form        | int(11)     | YES  |     | NULL    |       |
+| titre_form       | varchar(45) | YES  |     | NULL    |       |
+| duree_Form       | double      | YES  |     | NULL    |       |
+| prix_form        | double      | YES  |     | NULL    |       |
+| session_codesess | int(11)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table catalogue(
+    -> codespec int,
+    -> code_form int
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc catalogue;
++-----------+---------+------+-----+---------+-------+
+| Field     | Type    | Null | Key | Default | Extra |
++-----------+---------+------+-----+---------+-------+
+| codespec  | int(11) | YES  |     | NULL    |       |
+| code_form | int(11) | YES  |     | NULL    |       |
++-----------+---------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table specialite(
+    -> codeSpec int,
+    -> nom_spec varchar(45),
+    -> desc_spec varchar(45)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc specialite;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| codeSpec  | int(11)     | YES  |     | NULL    |       |
+| nom_spec  | varchar(45) | YES  |     | NULL    |       |
+| desc_spec | varchar(45) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table inscription
+    -> modify type_cours varchar(45) not null;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc inscription;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| codesess   | int(11)     | YES  |     | NULL    |       |
+| num_cin    | varchar(10) | YES  |     | NULL    |       |
+| type_cours | varchar(45) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
